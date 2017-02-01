@@ -28,5 +28,9 @@ module.exports.addTodo = function(todo,callback){
 };
 
 module.exports.getTodoById = function(id,callback){
-	Todo.create(todo,callback);
+	Todo.findById(id,callback);
+};
+
+module.exports.updateTodo = function(id,todo,options,callback){
+	Todo.findOneAndUpdate({_id:id},todo,options,callback);
 };

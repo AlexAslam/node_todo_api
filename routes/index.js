@@ -16,11 +16,32 @@ router.get('/', function(req, res, next) {
 
 router.post('/',function(req,res,next){
 	var todo = req.body;
-	Todo.addTodo(todo,(err,todo1)=>{
+	Todo.addTodo(todo,(err,todo)=>{
 		if(err){
 			throw err;
 		}else{
-			res.json(todo1);
+			res.json(todo);
+		}
+	});
+});
+
+
+router.get('/:_id',function(req,res,next){
+	Todo.getTodoById(req.params._id,(err,todo )=>{
+		if(err){
+			throw err;
+		}else{
+			res.json(todo);
+		}
+	});
+});
+
+router.put('/:_id',function(req,res,next){
+	Todo.updateTodo(req.params._id,req.body,{},(err,todo )=>{
+		if(err){
+			throw err;
+		}else{
+			res.json(todo);
 		}
 	});
 });
